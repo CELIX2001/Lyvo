@@ -1,0 +1,47 @@
+{
+  "name": "lyvo",
+  "version": "1.0.0",
+  "description": "Modern Real-time Messaging Platform",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:web\"",
+    "dev:server": "npm run dev --workspace=@lyvo/server",
+    "dev:web": "npm run dev --workspace=@lyvo/web",
+    "build": "npm run build --workspaces",
+    "build:server": "npm run build --workspace=@lyvo/server",
+    "build:web": "npm run build --workspace=@lyvo/web",
+    "start": "npm run start --workspace=@lyvo/server",
+    "lint": "npm run lint --workspaces",
+    "type-check": "npm run type-check --workspaces",
+    "clean": "npm run clean --workspaces && rm -rf node_modules",
+    "setup": "npm install && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CELIX2001/Lyvo.git"
+  },
+  "keywords": [
+    "messaging",
+    "real-time",
+    "chat",
+    "nextjs",
+    "fastify",
+    "websocket",
+    "typescript"
+  ],
+  "author": "Ahmet Celik",
+  "license": "MIT"
+}
+
