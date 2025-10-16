@@ -3,6 +3,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Smile, Paperclip, Mic } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { VoiceMessageRecorder } from './VoiceMessageRecorder';
+import { FileShareModal } from './FileShareModal';
+import { AIMessageSuggestions } from './AIMessageSuggestions';
 
 interface ModernMessageInputProps {
   onSendMessage: (message: string) => void;
@@ -31,6 +34,7 @@ export const ModernMessageInput: React.FC<ModernMessageInputProps> = ({
   const [isRecording, setIsRecording] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [showFilePicker, setShowFilePicker] = useState(false);
+  const [showVoiceRecorder, setShowVoiceRecorder] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -78,28 +82,41 @@ export const ModernMessageInput: React.FC<ModernMessageInputProps> = ({
 
   return (
     <>
+      {/* Voice Message Recorder Modal */}
+      {showVoiceRecorder && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <VoiceMessageRecorder
+            onSendVoiceMessage={handleVoiceMessage}
+            onClose={() => setShowVoiceRecorder(false)}
+          />
+        </div>
+      )}
+
+      {/* File Share Modal */}
+      {showFilePicker && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <FileShareModal
+            onSendFiles={handleFileShare}
+            onClose={() => setShowFilePicker(false)}
+          />
+        </div>
+      )}
+
       {/* AI Suggestions */}
       {enableAISuggestions && message.trim() && (
         <div className="mb-4">
-          <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
-            <p className="text-sm text-blue-600 dark:text-blue-400 mb-2">
-              💡 AI Suggestions:
-            </p>
-            <div className="space-y-2">
-              <button
-                onClick={() => setMessage('How are you doing today?')}
-                className="text-sm text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 block"
-              >
-                How are you doing today?
-              </button>
-              <button
-                onClick={() => setMessage('Can we schedule a meeting?')}
-                className="text-sm text-blue-700 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 block"
-              >
-                Can we schedule a meeting?
-              </button>
-            </div>
-          </div>
+          <AIMessageSuggestions
+            currentMessage={message}
+            conversationContext={conversationContext}
+            onSelectSuggestion={(suggestion) => {
+              setMessage(suggestion);
+              textareaRef.current?.focus();
+            }}
+            onFeedback={(suggestionId, feedback) => {
+              console.log(`AI suggestion feedback: ${suggestionId} - ${feedback}`);
+            }}
+            isEnabled={enableAISuggestions}
+          />
         </div>
       )}
 
@@ -114,6 +131,14 @@ export const ModernMessageInput: React.FC<ModernMessageInputProps> = ({
             className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors disabled:opacity-50"
           >
             <Paperclip className="h-5 w-5" />
+          </button>
+
+          <button
+            onClick={() => setShowVoiceRecorder(true)}
+            disabled={disabled}
+            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors disabled:opacity-50"
+          >
+            <Mic className="h-5 w-5" />
           </button>
 
           <div className="flex-1 relative">

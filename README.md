@@ -2,7 +2,7 @@
 
 A professional messaging application that rivals WhatsApp and Telegram, built with Next.js 14, TypeScript, and Tailwind CSS.
 
-## 🚀 Features
+## Features
 
 ### Core Messaging
 - **Real-time messaging** with WebSocket support
@@ -59,7 +59,7 @@ lyvo/
 └── README.md
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js 18+ 
@@ -91,7 +91,7 @@ lyvo/
 4. **Open your browser**
    Navigate to `http://localhost:3000` to see the application.
 
-## 🎨 UI Components
+## UI Components
 
 ### Modern Sidebar
 - Chat list with search functionality
@@ -113,7 +113,7 @@ lyvo/
 - File attachment support
 - Emoji picker integration
 
-## 🔧 Development
+## Development
 
 ### Available Scripts
 
@@ -140,7 +140,7 @@ npm run type-check   # TypeScript type checking
 - TypeScript for type safety
 - Tailwind CSS for styling
 
-## 🌟 Key Features in Detail
+## Key Features in Detail
 
 ### Real-time Communication
 - WebSocket-based real-time messaging
@@ -166,14 +166,14 @@ npm run type-check   # TypeScript type checking
 - Lazy loading of components
 - Efficient state management
 
-## 📱 Mobile Support
+## Mobile Support
 
 - Responsive design for all screen sizes
 - Touch-optimized interactions
 - Mobile-specific gestures
 - Progressive Web App capabilities
 
-## ♿ Accessibility
+## Accessibility
 
 - WCAG 2.1 AA compliant
 - Screen reader support
@@ -181,7 +181,7 @@ npm run type-check   # TypeScript type checking
 - High contrast mode
 - Reduced motion support
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -189,11 +189,11 @@ npm run type-check   # TypeScript type checking
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Built with modern web technologies
 - Inspired by leading messaging platforms
